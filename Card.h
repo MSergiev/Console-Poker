@@ -1,24 +1,23 @@
-/*
- * Card.h
- *
- *  Created on: Apr 12, 2017
- *      Author: ADMIN
- */
-
 #include <string>
 #ifndef CARD_H_
 #define CARD_H_
 using std::string;
 
+enum Suit{
+	HEARTS=1, DIAMONDS, SPADES, CLUBS};
+enum Face{
+	TWO=1, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE};
+
 class Card {
 private:
-	int suit, face;
+	Suit suit;
+	Face face;
 public:
-	Card(const int& suit, const int& face);
-	int getFace() const;
-	void setFace(int face);
-	int getSuit() const;
-	void setSuit(int suit);
+	Card(const Suit& suit, const Face& face);
+	Face getFace() const;
+	void setFace(Face face);
+	Suit getSuit() const;
+	void setSuit(Suit suit);
 	string getSuitString();
 	string getFaceString();
 	string toString();

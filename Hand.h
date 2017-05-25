@@ -1,10 +1,3 @@
-/*
- * Hand.h
- *
- *  Created on: Apr 13, 2017
- *      Author: ADMIN
- */
-
 #ifndef HAND_H_
 #define HAND_H_
 #include "Card.h"
@@ -53,8 +46,8 @@ public:
 	unsigned short getHighestCombo(const short& recur = 0);
 	int evaluate();
 	string printEvaluation();
-	string toFaceSymbol(const unsigned& index);
-	string toSuitSymbol(const int& index);
+	string toFaceSymbol(const Face& index);
+	string toSuitSymbol(const Suit& index);
 	string drawHand(const int& faceDown = 0);
 	string toString();
 	static void winner(Hand& h1, Hand& h2);

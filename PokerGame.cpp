@@ -233,13 +233,17 @@ void PokerGame::texasGameLoop(const int& turns){
 					cout << playerHands.at(player).drawHand() << endl;
 //Choose action
 					short action = 0;
-					while(action < 1 || action > 3){
-						cout << "1 - Fold   2 - " << (ante==0?"Check":"Call") << "   3 - Raise" << endl;
+					while((action < 1 && action != -1) || action > 3){
+						cout << "1 - Fold   2 - " << (ante==0?"Check":"Call") << "   3 - Raise   (-1 to quit)" << endl;
 						cout << "Choose action: ";
 						cin >> action;
 					}
 //Execute action
 					switch(action){
+					case -1:
+						clearScreen();
+						cout << "Thank you for playing!" << endl;
+						return;
 	//Case Fold
 					case 1:
 						folded[player] = true;

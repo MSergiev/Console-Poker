@@ -1,10 +1,3 @@
-/*
- * Deck.cpp
- *
- *  Created on: Apr 12, 2017
- *      Author: ADMIN
- */
-
 #include "Deck.h"
 
 Deck::Deck() {
@@ -19,9 +12,9 @@ Deck::Deck(const vector<Card>& deck) {
 
 void Deck::initDeck(){
 	vector<Card> newDeck;
-	for(int i = 1; i<= 13; i++)
-		for(int j = 1; j <= 4; j++)
-			newDeck.push_back(Card(j,i));
+	for(int i = TWO; i!=ACE; ++i)
+		for(int j = HEARTS; j!=CLUBS; ++j)
+			newDeck.push_back(Card(static_cast<Suit>(j),static_cast<Face>(i)));
 	setDeck(newDeck);
 }
 

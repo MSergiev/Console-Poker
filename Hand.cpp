@@ -1,10 +1,3 @@
-/*
- * Hand.cpp
- *
- *  Created on: Apr 13, 2017
- *      Author: ADMIN
- */
-
 #include "Hand.h"
 
 //Constructor
@@ -23,9 +16,6 @@ void Hand::countCardProps(){
 		countFaces[hand.at(i).getFace()-1]++;
 		countSuits[hand.at(i).getSuit()-1]++;
 	}
-
-	//for(unsigned i = 0; i < sizeof(countFaces)/sizeof(countFaces[0]); i++) cout << i+2 << " "; cout << endl;
-	//for(unsigned i = 0; i < sizeof(countFaces)/sizeof(countFaces[0]); i++) cout << countFaces[i] << ((i+2)>9?"  ":" "); cout << endl << endl;
 }
 
 //Hand getter
@@ -203,32 +193,32 @@ string Hand::printEvaluation(){
 }
 
 //Convert card face index to a symbol
-string Hand::toFaceSymbol(const unsigned& index){
+string Hand::toFaceSymbol(const Face& index){
 	switch(index){
-	case 1: return "2";
-	case 2: return "3";
-	case 3: return "4";
-	case 4: return "5";
-	case 5: return "6";
-	case 6: return "7";
-	case 7: return "8";
-	case 8: return "9";
-	case 9: return "T";
-	case 10: return "J";
-	case 11: return "Q";
-	case 12: return "K";
-	case 13: return "A";
+	case TWO: return "2";
+	case THREE: return "3";
+	case FOUR: return "4";
+	case FIVE: return "5";
+	case SIX: return "6";
+	case SEVEN: return "7";
+	case EIGHT: return "8";
+	case NINE: return "9";
+	case TEN: return "T";
+	case JACK: return "J";
+	case QUEEN: return "Q";
+	case KING: return "K";
+	case ACE: return "A";
 	default: return "0";
 	}
 }
 
 //Convert card suit index to a symbol
-string Hand::toSuitSymbol(const int& index){
+string Hand::toSuitSymbol(const Suit& index){
 	switch(index){
-	case 1: return "♥";
-	case 2: return "♦";
-	case 3: return "♠";
-	case 4: return "♣";
+	case HEARTS: return "♥";
+	case DIAMONDS: return "♦";
+	case SPADES: return "♠";
+	case CLUBS: return "♣";
 	default: return "O";
 	}
 }
@@ -316,16 +306,16 @@ void Hand::winner(Hand& hand1, Hand& hand2){
 			recur = (hand1.evaluate()==2?2:hand1.evaluate()==6?1:0);
 			for(int i = 0; i <= recur; i++){
 				if(hand1.getHighestCombo(i) > hand2.getHighestCombo(i)){
-					cout << "1 wins with " << hand1.printEvaluation() << " and highest card " << hand1.toFaceSymbol(hand1.getHighestCombo(i)+1); break;}
+					cout << "1 wins with " << hand1.printEvaluation() << " and highest card " << hand1.toFaceSymbol(static_cast<Face>(hand1.getHighestCombo(i)+1)); break;}
 				else if(hand1.getHighestCombo(i) < hand2.getHighestCombo(i)){
-					cout << "2 wins with " << hand2.printEvaluation() << " and highest card " << hand2.toFaceSymbol(hand2.getHighestCombo(i)+1); break;}
+					cout << "2 wins with " << hand2.printEvaluation() << " and highest card " << hand2.toFaceSymbol(static_cast<Face>(hand2.getHighestCombo(i)+1)); break;}
 			}
 			break;
 		case 0: case 4: case 5: case 8:
 			if(hand1.getHighestCard() > hand2.getHighestCard()){
-				cout << "1 wins with " << hand1.printEvaluation() << " and highest card " << hand1.toFaceSymbol(hand1.getHighestCard()+1); break;}
+				cout << "1 wins with " << hand1.printEvaluation() << " and highest card " << hand1.toFaceSymbol(static_cast<Face>(hand1.getHighestCard()+1)); break;}
 			else if(hand1.getHighestCard() < hand2.getHighestCard()){
-				cout << "2 wins with " << hand2.printEvaluation() << " and highest card " << hand2.toFaceSymbol(hand2.getHighestCard()+1); break;}
+				cout << "2 wins with " << hand2.printEvaluation() << " and highest card " << hand2.toFaceSymbol(static_cast<Face>(hand2.getHighestCard()+1)); break;}
 			else{
 				recur = 0;
 				cout << endl;
@@ -334,9 +324,9 @@ void Hand::winner(Hand& hand1, Hand& hand2){
 					recur++;
 				}
 				if(hand1.getHighestCard(recur) > hand2.getHighestCard(recur)){
-					cout << "1 wins with " << hand1.printEvaluation() << " and highest card " << hand1.toFaceSymbol(hand1.getHighestCard(recur)+1); break;}
+					cout << "1 wins with " << hand1.printEvaluation() << " and highest card " << hand1.toFaceSymbol(static_cast<Face>(hand1.getHighestCard(recur)+1)); break;}
 				else if(hand1.getHighestCard(recur) < hand2.getHighestCard(recur)){
-					cout << "2 wins with " << hand2.printEvaluation() << " and highest card " << hand2.toFaceSymbol(hand2.getHighestCard(recur)+1); break;}
+					cout << "2 wins with " << hand2.printEvaluation() << " and highest card " << hand2.toFaceSymbol(static_cast<Face>(hand2.getHighestCard(recur)+1)); break;}
 				else cout << "Equal standing with " << hand2.printEvaluation() << endl; break;}
 		}
 	}

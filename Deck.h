@@ -1,10 +1,3 @@
-/*
- * Deck.h
- *
- *  Created on: Apr 12, 2017
- *      Author: ADMIN
- */
-
 #ifndef DECK_H_
 #define DECK_H_
 
